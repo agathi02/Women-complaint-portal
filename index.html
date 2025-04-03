@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <!-- Main Content -->
+    <div class="w-full max-w-6xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:flex">
+                <!-- Left Panel - System Info -->
+                <div class="md:w-1/2 bg-indigo-600 p-12 flex flex-col justify-center">
+                    <h1 class="text-4xl font-bold text-white mb-6">Women's Safety Complaint System</h1>
+                    <p class="text-indigo-100 text-lg mb-6">
+                        A secure platform to report harassment incidents, track complaints, and get support.
+                    </p>
+                    <div class="flex justify-center mt-8">
+                        <span class="material-icons text-white text-6xl">security</span>
+                    </div>
+                </div>
+                
+                <!-- Right Panel - Login Options -->
+                <div class="md:w-1/2 p-12">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-8">Get Started</h2>
+                    <div class="space-y-4">
+                        <a href="{{ url_for('login') }}" class="block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 text-center flex items-center justify-center">
+                            <span class="material-icons mr-2">login</span>
+                            User Login
+                        </a>
+                        <a href="{{ url_for('register') }}" class="block w-full bg-white hover:bg-gray-100 text-indigo-600 font-semibold py-3 px-4 rounded-lg border border-indigo-600 transition duration-200 text-center flex items-center justify-center">
+                            <span class="material-icons mr-2">person_add</span>
+                            User Registration
+                        </a>
+                        <a href="{{ url_for('admin_login') }}" class="block w-full bg-gray-800 hover:bg-gray-900 text-white font-semibold py-3 px-4 rounded-lg transition duration-200 text-center flex items-center justify-center">
+                            <span class="material-icons mr-2">admin_panel_settings</span>
+                            Admin Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Safety Information Section -->
+    <div class="w-full max-w-6xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-xl shadow-lg p-8">
+            <h2 class="text-3xl font-bold text-indigo-800 mb-6 text-center">Women's Safety Information</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Safety Tips -->
+                <div class="bg-blue-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-4 flex items-center">
+                        <span class="material-icons mr-2 text-indigo-600">safety_divider</span>
+                        Safety Tips
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <span class="material-icons text-green-600 mr-2">check_circle</span>
+                            <span>Trust your instincts - if a situation feels unsafe, remove yourself</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-icons text-green-600 mr-2">check_circle</span>
+                            <span>Share your live location with trusted contacts when traveling</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-icons text-green-600 mr-2">check_circle</span>
+                            <span>Learn emergency numbers and self-defense basics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-icons text-green-600 mr-2">check_circle</span>
+                            <span>Be aware of your surroundings, especially at night</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="material-icons text-green-600 mr-2">check_circle</span>
+                            <span>Keep emergency contacts easily accessible</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Reporting Guidance -->
+                <div class="bg-purple-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-semibold text-indigo-700 mb-4 flex items-center">
+                        <span class="material-icons mr-2 text-indigo-600">report</span>
+                        How to Report Harassment
+                    </h3>
+                    <ol class="space-y-3 list-decimal list-inside">
+                        <li class="flex items-start">
+                            <span class="mr-2">1.</span>
+                            <span>Document details immediately (time, location, description)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">2.</span>
+                            <span>Preserve any evidence (messages, photos, videos)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">3.</span>
+                            <span>Report through this system or contact local authorities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">4.</span>
+                            <span>Seek support from friends, family, or professional counselors</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">5.</span>
+                            <span>Follow up on your complaint until resolution</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <!-- Emergency Contacts -->
+            <div class="mt-8 bg-red-50 p-6 rounded-lg">
+                <h3 class="text-xl font-semibold text-red-700 mb-4 flex items-center">
+                    <span class="material-icons mr-2 text-red-600">emergency</span>
+                    Emergency Contacts
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="font-medium text-gray-800">Police Emergency</h4>
+                        <p class="text-2xl font-bold text-red-600">100</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="font-medium text-gray-800">Women's Helpline</h4>
+                        <p class="text-2xl font-bold text-red-600">1091</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <h4 class="font-medium text-gray-800">National Commission for Women</h4>
+                        <p class="text-2xl font-bold text-red-600">7827-170-170</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Resources -->
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold text-indigo-700 mb-4">Additional Resources</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:bg-gray-50 transition-colors flex items-center">
+                        <span class="material-icons text-indigo-600 mr-3">menu_book</span>
+                        <span>Know Your Rights: Legal Protections Against Harassment</span>
+                    </a>
+                    <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:bg-gray-50 transition-colors flex items-center">
+                        <span class="material-icons text-indigo-600 mr-3">support_agent</span>
+                        <span>Counseling and Support Services</span>
+                    </a>
+                    <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:bg-gray-50 transition-colors flex items-center">
+                        <span class="material-icons text-indigo-600 mr-3">self_improvement</span>
+                        <span>Self-Defense Training Programs</span>
+                    </a>
+                    <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:bg-gray-50 transition-colors flex items-center">
+                        <span class="material-icons text-indigo-600 mr-3">groups</span>
+                        <span>Community Support Groups</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="mt-12 text-center text-gray-600 text-sm pb-8">
+        <p>© 2023 Women's Safety Complaint System. All rights reserved.</p>
+        <p class="mt-2">If you're in immediate danger, please call emergency services first.</p>
+    </footer>
+</div>
+{% endblock %}

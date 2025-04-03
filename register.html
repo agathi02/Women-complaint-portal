@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <!-- Safety Header -->
+        <div class="text-center mb-8">
+            <div class="mx-auto h-16 w-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+                <i class="bi bi-shield-check text-3xl text-indigo-600"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Your Account</h1>
+            <p class="text-gray-600">Join our secure platform to report safety concerns</p>
+        </div>
+
+        <!-- Registration Card -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+            <div class="p-8">
+                <form class="space-y-4" action="{{ url_for('register') }}" method="POST" onsubmit="return validateForm()">
+                    <!-- Username Field -->
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="bi bi-person text-gray-400"></i>
+                            </div>
+                            <input id="username" name="username" type="text" required 
+                                   class="pl-10 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                                   placeholder="Choose a username">
+                        </div>
+                    </div>
+                    
+                    <!-- Phone Field -->
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="bi bi-phone text-gray-400"></i>
+                            </div>
+                            <input id="phone" name="phone" type="tel" required 
+                                   class="pl-10 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                                   placeholder="Your mobile number">
+                        </div>
+                    </div>
+                    
+                    <!-- Address Field -->
+                    <div>
+                        <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 pt-3 pointer-events-none">
+                                <i class="bi bi-house text-gray-400"></i>
+                            </div>
+                            <textarea id="address" name="address" rows="2" required 
+                                      class="pl-10 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                                      placeholder="Your complete address"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Location Field -->
+                    <div>
+                        <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location (Area/City)</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="bi bi-geo-alt text-gray-400"></i>
+                            </div>
+                            <input id="location" name="location" type="text" required 
+                                   class="pl-10 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                                   placeholder="Your current location">
+                        </div>
+                    </div>
+                    
+                    <!-- Password Field -->
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="bi bi-lock text-gray-400"></i>
+                            </div>
+                            <input id="password" name="password" type="password" required 
+                                   class="pl-10 block w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+                                   placeholder="Create a password (min 8 characters)">
+                        </div>
+                        <p class="mt-1 text-xs text-gray-500">Use at least 8 characters with a mix of letters and numbers</p>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="pt-2">
+                        <button type="submit" 
+                                class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                            <i class="bi bi-person-plus mr-2"></i>
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Privacy Notice -->
+                <div class="mt-6 p-3 bg-blue-50 rounded-lg">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="bi bi-shield-lock text-blue-500"></i>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-xs text-blue-700">
+                                Your information is protected and will only be used for safety purposes.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Login Link -->
+                <div class="mt-6 text-center text-sm">
+                    <p class="text-gray-600">Already registered? 
+                        <a href="{{ url_for('login') }}" class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+                            Sign in here
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Emergency Note -->
+        <div class="mt-6 text-center text-xs text-gray-500">
+            <p>If you're in immediate danger, please contact emergency services first.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

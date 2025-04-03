@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-900">User Profile</h1>
+            <a href="{{ url_for('admin_dashboard') }}" class="text-indigo-600 hover:text-indigo-800 flex items-center">
+                <span class="material-icons">arrow_back</span>
+                <span class="ml-1">Back to Admin Dashboard</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <!-- User Info -->
+        <div class="bg-white shadow rounded-lg overflow-hidden mb-6">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <div class="flex items-center space-x-4">
+                    <span class="material-icons text-4xl text-indigo-600">account_circle</span>
+                    <div>
+                        <h2 class="text-xl font-bold">{{ user.username }}</h2>
+                        <p class="text-gray-600">{{ user.phone }} • {{ user.location }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="px-6 py-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Address</h3>
+                    <p class="mt-1 text-sm text-gray-900">{{ user.address }}</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Role</h3>
+                    <p class="mt-1 text-sm text-gray-900">{{ user.role }}</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Total Complaints</h3>
+                    <p class="mt-1 text-sm text-gray-900">{{ complaints|length }}</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-sm font-medium text-gray-500">Resolved Complaints</h3>
+                    <p class="mt-1 text-sm text-gray-900">{{ complaints|selectattr('status', 'equalto', 'Resolved')|list|length }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Complaints -->
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-lg font-medium">{{ user.username }}'s Complaints</h2>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reason</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        {% for complaint in complaints %}
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ complaint.id }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ complaint.reason }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
+                                    {% if complaint.status == 'Resolved' %}bg-green-100 text-green-800
+                                    {% elif complaint.status == 'Pending' %}bg-yellow-100 text-yellow-800
+                                    {% elif complaint.status == 'Rejected' %}bg-red-100 text-red-800
+                                    {% else %}bg-blue-100 text-blue-800{% endif %}">
+                                    {{ complaint.status }}
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <a href="{{ url_for('view_complaint', complaint_id=complaint.id) }}" class="text-indigo-600 hover:text-indigo-900">View</a>
+                            </td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4" class="px-6 py-4 text-center text-sm text-gray-500">No complaints found</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
